@@ -1,0 +1,124 @@
+﻿@model MvcApplication1.Models.Product
+@{
+    ViewBag.Title = "Edit Product";
+}
+
+  <div id="topNavWrap">
+            <!-- ==================== TOP NAVIGATION ==================== -->
+            <div id="topNav" class="clear">
+                <div id="display_menu_1" class="menu">
+                    <script type="text/javascript">var breadCrumb = "||";</script>
+                    <script type="text/javascript">
+                        function mOvr1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav nav_hover'; }
+                        function mOut1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav'; }
+ </script>
+                    <ul>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);"">                         
+                             @Html.ActionLink("Home","Index","Company")
+                        </li>
+                        <li class="nav nav_selected" onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                             @Html.ActionLink("View Own Product","ViewOwnProd","Company")
+                        </li>
+                        <li class="nav " onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                             @Html.ActionLink("Add new Product","AddProduct","Company")
+                        </li>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);" onclick="mClk1(this);">
+                            <a href="#" title="">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- #top_nav -->
+        </div>
+
+<div class="span10 offset1">
+@using (Html.BeginForm())
+{
+       @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+    @Html.HiddenFor(model => model.Id);
+    
+    @Html.HiddenFor(model => model.CompanyId);
+
+    @Html.HiddenFor(model => model.Id);
+    
+    <fieldset>
+        <legend>Edit Product</legend>
+        <br />
+        <div class="row">
+            <div class="span2 ">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+            <div class="span">
+                @Html.EditorFor(model => model.Name)
+            </div>
+            <div class="span offset1">
+            @Html.ValidationMessageFor(model => model.Name)
+                </div>
+        </div>
+   
+
+        <div class="row">
+            <div class="span2 ">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </div>
+            <div class="span">
+                @Html.EditorFor(model => model.Quantity)
+            </div>
+             <div class="span offset1">
+            @Html.ValidationMessageFor(model => model.Quantity)
+                </div>
+       </div>
+
+        <div class="row">
+            <div class="span2 ">
+                @Html.DisplayNameFor(model => model.Price)
+            </div>
+            <div class="span">
+                @Html.EditorFor(model => model.Price)
+            </div>
+              <div class="span offset1">
+            @Html.ValidationMessageFor(model => model.Price)
+                </div>
+      </div>
+
+        <div class="row">
+            <div class="span2 ">
+                @Html.DisplayNameFor(model => model.Description)
+            </div>
+            <div class="span">
+                @Html.EditorFor(model => model.Description)
+            </div>
+              <div class="span offset1">
+            @Html.ValidationMessageFor(model => model.Description)
+                </div>
+      </div>
+
+        <div class="row">
+            <div class="span2 ">
+                @Html.DisplayNameFor(model => model.Category)
+            </div>
+            <div class="span">
+                @Html.EditorFor(model => model.Category)
+            </div>
+              <div class="span offset1">
+            @Html.ValidationMessageFor(model => model.Category)
+                </div>
+     </div>
+    
+        <br />
+         <div class="row">
+            <div class="offset2">
+            <input type="submit" class="btn btn-primary btn-large span3" value="Save">
+            </div>
+        </div>
+      
+    </fieldset>
+}
+
+      <br />
+        <br />
+    </div>
+ @Scripts.Render("~/bundles/jqueryval")

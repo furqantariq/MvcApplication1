@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>ABC Store - @ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.css">
+<script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+
+    <link type="text/css" href="~/Content/style.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/navigation.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/content.css" rel="stylesheet">
+    
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <div class="pageWrapper">
+
+        <!-- ======================== HEADER ======================== -->
+        <div id="header">
+
+
+            <h1 id="display_homepage_title">
+                @Html.ActionLink("Webstore","Index","Home")</h1>
+            <!--if_homepage-->
+
+            <!--if_not_homepage-->
+
+            <div id="siteTools" data-v-edit-region="Header Links">
+                <span><a href="~/Account/Profile" title="My Account">My Account</a></span> | 
+       
+                <span>
+                    @if(Session["User"]==null && Session["Company"]==null){
+                    <a href="~/Account/Authenticate" title="Login to Your Account">Login /</a> <a href="~/Account/Create" title="Register for an Account">Register</a>                    
+                    }
+
+                    @if(Session["User"]!=null || Session["Company"]!=null){
+                        <a href="~/Home/Logout">Logout</a>
+                    }
+
+                </span>
+            </div>
+
+            <div id="displaySearch">
+                <form action="/Product/Search" method="get" name="SearchBoxForm">
+                    <input type="text" name="Search" class="searchInput transition" value="" placeholder="SEARCH PRODUCT">
+                    <input type="submit" class="searchSubmit" value="">
+                </form>
+            </div>
+            <!-- #displaySearch -->
+
+
+        </div>
+        <!-- #header -->
+
+     
+        <!-- ==================== CONTENT ==================== -->
+        <div id="contentWrap" class="clear">
+            <div id="content" class="clear">
+
+                <!-- ==================== CONTENT AREA ==================== -->
+                <div id="content_area">
+
+                    @RenderBody()
+
+
+                </div>
+                <!-- #content_area -->
+
+            </div>
+            <!-- #content -->
+
+        </div>
+        <!-- #contentWrap -->
+
+
+    </div>
+    <!-- #pageWrapper -->
+
+    <div id="footerWrap">
+        <!-- ==================== FOOTER ==================== -->
+        <div id="footer" class="clear">
+            <div id="footerTop" class="clear">
+
+                <div id="eList">
+                    <div class="title">let's get social</div>
+                    <div class="social" data-v-edit-region="Social Media">
+                        <a href="https://www.facebook.com/"  target="_blank">
+                            <img src="~/Images/template/facebook.png" width=40 height="30" alt="Facebook"></a>
+                        <a href="https://twitter.com/" target="_blank">
+                            <img src="~/Images/template/twitter.jpg" width=40 height="30" alt="Twitter"></a>
+                    </div>
+                </div>
+                <!-- #eList -->
+
+                <ul class="col-1" data-v-edit-region="Link Column 1">
+                    <li class="title">Company Info</li>
+                    <li><a href="#" title="About ">About Us</a></li>
+                    <li><a href="#" title="Contact ">Contact Us</a></li>
+                    <li><a href="#" title="Privacy Policy">Privacy Policy</a></li>
+                    <li><a href="#" title="Terms and Conditions">Terms &amp; Conditions</a></li>
+                </ul>
+
+                <ul class="col-2" data-v-edit-region="Link Column 2">
+                    <li class="title">Be A Seller</li>
+                    <li><a href="~/Company/Create" title="Create a new Seller Account">Sing Up As Company</a></li>
+                    <li><a href="~/Company/Authenticate" title="Login As Seller">Login As Company</a></li>
+                  </ul>
+
+                <ul class="col-3" data-v-edit-region="Link Column 3">
+                    <li class="title">Customer Service</li>
+                    <li><a href="#" title="Site Help">Help</a></li>
+                    <li><a href="#" title="Site FAQ">FAQ</a></li>
+                    <li>Toll Free 888-555-1234</li>
+                </ul>
+
+              
+           
+
+            </div>
+
+        </div>
+        <!-- #footer -->
+    </div>
+    <!-- #footerWrap -->
+    <!--
+      ==========================================================================================
+      VOLUSION LINK - BEGIN
+      ==========================================================================================
+      Customer has agreed per Volusion's Terms of Service (http://www.volusion.com/agreement_monthtomonth.asp)
+      to maintain a text hyperlink to "http://www.volusion.com" in the footer of the website. The link must be
+      standard html, contain no javascript, and be approved by Volusion. Removing this link breaches the Volusion agreement.
+      ==========================================================================================
+      -->
+    <div id="footerBottom" class="clear">
+        <div class="copyright">
+            <a href="http://hipster-demo.volusion.com/terms.asp" title="Terms">Copyright © <span class="insertYear">2014</span>&nbsp;. All Rights Reserved.</a>
+
+            Powered with <a href="http://www.volusion.com/" target="_blank">Volusion ecommerce</a>
+            <!-- #if_not_hompage -->
+        </div>
+        <!-- .copyright -->
+    </div>
+    <!-- #footerBottom -->
+
+
+
+
+    
+   @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

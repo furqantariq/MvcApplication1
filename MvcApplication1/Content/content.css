@@ -1,0 +1,177 @@
+﻿@font-face {
+  font-family: 'Chunkfive';
+  src: url('../fonts/Chunkfive/chunkfive-webfont.eot');
+  src: url('../fonts/Chunkfive/chunkfive-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Chunkfive/chunkfive-webfont.svg') format('svg'), url('../fonts/Chunkfive/chunkfive-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/* * * NORMAL * * */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/montserrat-reg.eot');
+    src: url('../fonts/Montserrat/montserrat-reg.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Montserrat/montserrat-reg.svg') format('svg'),
+         url('../fonts/Montserrat/montserrat-reg.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+/* * * BOLD * * */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/montserrat-bold.eot');
+    src: url('../fonts/Montserrat/montserrat-bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Montserrat/montserrat-bold.svg') format('svg'),
+         url('../fonts/Montserrat/montserrat-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+body {
+  font-family: sans-serif;
+}
+/* COLORS */
+.colors_background3 {
+  background-color: #DDD;
+}
+.colors_highlight {
+  background-color: #fb0;
+}
+.colors_lines {
+  background-color: #000;
+}
+.colors_lines_light {
+  background-color: #ccc;
+}
+.colors_menutitle {
+  background-color: #444;
+}
+.colors_menutitletext {
+  color: #fff;
+}
+/* PRODUCT NAME COLOR */
+.colors_productname {
+  color: #8f8f8f;
+}
+/* PRODUCT PRICE COLOR */
+.colors_productprice {
+  color: #fec682;
+}
+a.colors_homepage_title {
+  color: #8f8f8f;
+}
+body,
+.colors_background_main,
+.colors_background1,
+.colors_background2 {
+  background-color: #fff;
+}
+a,
+.colors_background2_text,
+.colors_background3_text,
+.colors_links {
+  color: #8f8f8f;
+}
+a.colors_background2_text:hover,
+a.colors_background3_text:hover,
+a.colors_productname:hover {
+  color: #91cfcd;
+}
+a:hover,
+a.colors_links:hover {
+  color: #91cfcd;
+}
+td,
+.colors_text {
+  color: #8f8f8f;
+}
+.colors_background1_text {
+  color: #8f8f8f;
+}
+.colors_background1_text:hover {
+  color: #91cfcd;
+}
+.colors_backgroundlight,
+.colors_backgroundneutral,
+.colors_descriptionbox,
+.colors_pricebox {
+  background-color: #eee;
+}
+.colors_backgroundlight_dark,
+.colors_backgroundneutral_dark {
+  background-color: #ddd;
+}
+/* CONTENT AREA */
+font {
+  color: #8f8f8f;
+}
+form {
+  margin: 0;
+}
+.productnamecolor,
+a.productnamecolor {
+  font-size: 12px;
+  font-weight: 700;
+}
+a.carttext:hover {
+  font-size: 10px;
+  text-decoration: underline;
+}
+.navtitle,
+a.navtitle,
+a.navtitle:hover {
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+a.navtop:hover {
+  color: #91cfcd;
+  text-decoration: underline;
+}
+table,
+td,
+.bgcolor1,
+.bgcolor2,
+.bgcolor3,
+.pricecolor,
+a.regularlink,
+.nav1,
+a.nav1,
+.nav1_selected,
+a.nav1_selected,
+.nav2,
+a.nav2,
+.nav2_selected,
+a.nav2_selected,
+.nav3,
+a.nav3,
+.nav3_selected,
+a.nav3_selected,
+.navbottom,
+a.navbottom,
+.navspecials,
+a.navspecials {
+  font-size: 12px;
+}
+textarea,
+input,
+.navtop,
+a.navtop {
+  color: #000;
+  font-size: 12px;
+}
+.productnamecolorLARGE,
+a.productnamecolorLARGE,
+a.productnamecolorLARGE:hover {
+  font-size: 14px;
+  font-weight: bold;
+}
+.productnamecolorsmall,
+a.productnamecolorsmall,
+.pricecolorsmall,
+.smalltext,
+.carttext,
+a.carttext {
+  font-size: 10px;
+}
+a.regularlink:hover,
+a.navbottom:hover {
+  text-decoration: underline;
+}

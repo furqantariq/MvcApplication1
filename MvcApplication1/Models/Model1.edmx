@@ -1,0 +1,526 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Database1Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Database1ModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="Database1Model.Store.Accounts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Company" EntityType="Database1Model.Store.Company" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Products" EntityType="Database1Model.Store.Products" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Reviews" EntityType="Database1Model.Store.Reviews" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Transactions" EntityType="Database1Model.Store.Transactions" store:Type="Tables" store:Schema="dbo" store:Name="Transactions">
+            <DefiningQuery>SELECT 
+      [Transactions].[UserId] AS [UserId], 
+      [Transactions].[ProductId] AS [ProductId], 
+      [Transactions].[Quantity] AS [Quantity], 
+      [Transactions].[TotalAmount] AS [TotalAmount], 
+      [Transactions].[Date] AS [Date]
+      FROM [dbo].[Transactions] AS [Transactions]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="WishList" EntityType="Database1Model.Store.WishList" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Products_ToCompany" Association="Database1Model.Store.FK_Products_ToCompany">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_ToAccounts" Association="Database1Model.Store.FK_Reviews_ToAccounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_ToProducts" Association="Database1Model.Store.FK_Reviews_ToProducts">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToAccounts" Association="Database1Model.Store.FK_Table_ToAccounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="WishList" EntitySet="WishList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToProducts" Association="Database1Model.Store.FK_Table_ToProducts">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="WishList" EntitySet="WishList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_ToAccounts" Association="Database1Model.Store.FK_Transactions_ToAccounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_ToProducts" Association="Database1Model.Store.FK_Transactions_ToProducts">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Username" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Password" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Email" Type="nchar" Nullable="false" MaxLength="30" />
+          <Property Name="Country" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="City" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Address" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="DOB" Type="date" Nullable="false" />
+          <Property Name="Phone" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Password" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Description" Type="nchar" MaxLength="200" />
+          <Property Name="Category" Type="nchar" MaxLength="20" />
+          <Property Name="Email" Type="nchar" MaxLength="30" />
+          <Property Name="Country" Type="nchar" MaxLength="20" />
+          <Property Name="Address" Type="nchar" MaxLength="50" />
+          <Property Name="Phone" Type="int" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="30" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="real" Nullable="false" />
+          <Property Name="Description" Type="nchar" MaxLength="200" />
+          <Property Name="Category" Type="nchar" MaxLength="20" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reviews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Data" Type="nchar" Nullable="false" MaxLength="200" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'C:\USERS\FURQAN\DOCUMENTS\VISUAL STUDIO 2012\PROJECTS\MVCAPPLICATION1\MVCAPPLICATION1\APP_DATA\DATABASE1.MDF.dbo.Transactions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="TotalAmount" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="TotalAmount" Type="real" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WishList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Products_ToCompany">
+          <End Role="Company" Type="Database1Model.Store.Company" Multiplicity="1" />
+          <End Role="Products" Type="Database1Model.Store.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_ToAccounts">
+          <End Role="Accounts" Type="Database1Model.Store.Accounts" Multiplicity="1" />
+          <End Role="Reviews" Type="Database1Model.Store.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_ToProducts">
+          <End Role="Products" Type="Database1Model.Store.Products" Multiplicity="1" />
+          <End Role="Reviews" Type="Database1Model.Store.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToAccounts">
+          <End Role="Accounts" Type="Database1Model.Store.Accounts" Multiplicity="1" />
+          <End Role="WishList" Type="Database1Model.Store.WishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WishList">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToProducts">
+          <End Role="Products" Type="Database1Model.Store.Products" Multiplicity="1" />
+          <End Role="WishList" Type="Database1Model.Store.WishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WishList">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_ToAccounts">
+          <End Role="Accounts" Type="Database1Model.Store.Accounts" Multiplicity="1" />
+          <End Role="Transactions" Type="Database1Model.Store.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_ToProducts">
+          <End Role="Products" Type="Database1Model.Store.Products" Multiplicity="1" />
+          <End Role="Transactions" Type="Database1Model.Store.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database1Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DB" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Database1Model.Account" />
+          <EntitySet Name="Companies" EntityType="Database1Model.Company" />
+          <EntitySet Name="Products" EntityType="Database1Model.Product" />
+          <EntitySet Name="Reviews" EntityType="Database1Model.Review" />
+          <EntitySet Name="Transactions" EntityType="Database1Model.Transaction" />
+          <EntitySet Name="WishLists" EntityType="Database1Model.WishList" />
+          <AssociationSet Name="FK_Reviews_ToAccounts" Association="Database1Model.FK_Reviews_ToAccounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToAccounts" Association="Database1Model.FK_Table_ToAccounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="WishList" EntitySet="WishLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_ToAccounts" Association="Database1Model.FK_Transactions_ToAccounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ToCompany" Association="Database1Model.FK_Products_ToCompany">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_ToProducts" Association="Database1Model.FK_Reviews_ToProducts">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToProducts" Association="Database1Model.FK_Table_ToProducts">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="WishList" EntitySet="WishLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_ToProducts" Association="Database1Model.FK_Transactions_ToProducts">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="true" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reviews" Relationship="Database1Model.FK_Reviews_ToAccounts" FromRole="Accounts" ToRole="Reviews" />
+          <NavigationProperty Name="WishLists" Relationship="Database1Model.FK_Table_ToAccounts" FromRole="Accounts" ToRole="WishList" />
+          <NavigationProperty Name="Transactions" Relationship="Database1Model.FK_Transactions_ToAccounts" FromRole="Accounts" ToRole="Transactions" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Description" Type="String" MaxLength="200" Unicode="true" FixedLength="true" />
+          <Property Name="Category" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Email" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+          <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Address" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="Phone" Type="Int32" />
+          <NavigationProperty Name="Products" Relationship="Database1Model.FK_Products_ToCompany" FromRole="Company" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="true" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Single" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" Unicode="true" FixedLength="true" />
+          <Property Name="Category" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Database1Model.FK_Products_ToCompany" FromRole="Products" ToRole="Company" />
+          <NavigationProperty Name="Reviews" Relationship="Database1Model.FK_Reviews_ToProducts" FromRole="Products" ToRole="Reviews" />
+          <NavigationProperty Name="WishLists" Relationship="Database1Model.FK_Table_ToProducts" FromRole="Products" ToRole="WishList" />
+          <NavigationProperty Name="Transactions" Relationship="Database1Model.FK_Transactions_ToProducts" FromRole="Products" ToRole="Transactions" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="true" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Database1Model.FK_Reviews_ToAccounts" FromRole="Reviews" ToRole="Accounts" />
+          <NavigationProperty Name="Product" Relationship="Database1Model.FK_Reviews_ToProducts" FromRole="Reviews" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="TotalAmount" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="TotalAmount" Type="Single" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Account" Relationship="Database1Model.FK_Transactions_ToAccounts" FromRole="Transactions" ToRole="Accounts" />
+          <NavigationProperty Name="Product" Relationship="Database1Model.FK_Transactions_ToProducts" FromRole="Transactions" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="WishList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Database1Model.FK_Table_ToAccounts" FromRole="WishList" ToRole="Accounts" />
+          <NavigationProperty Name="Product" Relationship="Database1Model.FK_Table_ToProducts" FromRole="WishList" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK_Reviews_ToAccounts">
+          <End Role="Accounts" Type="Database1Model.Account" Multiplicity="1" />
+          <End Role="Reviews" Type="Database1Model.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToAccounts">
+          <End Role="Accounts" Type="Database1Model.Account" Multiplicity="1" />
+          <End Role="WishList" Type="Database1Model.WishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WishList">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_ToAccounts">
+          <End Role="Accounts" Type="Database1Model.Account" Multiplicity="1" />
+          <End Role="Transactions" Type="Database1Model.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ToCompany">
+          <End Role="Company" Type="Database1Model.Company" Multiplicity="1" />
+          <End Role="Products" Type="Database1Model.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_ToProducts">
+          <End Role="Products" Type="Database1Model.Product" Multiplicity="1" />
+          <End Role="Reviews" Type="Database1Model.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToProducts">
+          <End Role="Products" Type="Database1Model.Product" Multiplicity="1" />
+          <End Role="WishList" Type="Database1Model.WishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WishList">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_ToProducts">
+          <End Role="Products" Type="Database1Model.Product" Multiplicity="1" />
+          <End Role="Transactions" Type="Database1Model.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="DB">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="Database1Model.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="Database1Model.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="Database1Model.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="Database1Model.Review">
+              <MappingFragment StoreEntitySet="Reviews">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="Database1Model.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WishLists">
+            <EntityTypeMapping TypeName="Database1Model.WishList">
+              <MappingFragment StoreEntitySet="WishList">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

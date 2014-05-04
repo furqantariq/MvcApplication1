@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="417bdb7404624c3f9b328962b68ea4e9" Name="Diagram1">
+        <EntityTypeShape EntityType="Database1Model.Account" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Company" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Product" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Review" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Transaction" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.WishList" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="Database1Model.FK_Reviews_ToAccounts" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_Table_ToAccounts" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_Transactions_ToAccounts" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_Products_ToCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_Reviews_ToProducts" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_Table_ToProducts" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_Transactions_ToProducts" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

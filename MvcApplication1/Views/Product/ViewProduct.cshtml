@@ -1,0 +1,81 @@
+﻿@model MvcApplication1.Models.Product
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <div id="topNavWrap">
+            <!-- ==================== TOP NAVIGATION ==================== -->
+            <div id="topNav" class="clear">
+                <div id="display_menu_1" class="menu">
+                    <script type="text/javascript">var breadCrumb = "||";</script>
+                    <script type="text/javascript">
+                        function mOvr1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav nav_hover'; }
+                        function mOut1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav'; }
+ </script>
+                    <ul>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);"">
+                           @Html.ActionLink("Home","Index","Home")
+
+                        </li>
+                      <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                          @Html.ActionLink("All Products","ViewAll","Product")
+
+                        </li>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                            <a href="/Cart" title="">Shopping Cart</a>
+                        </li>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);" onclick="mClk1(this);">
+                            <a href="#" title="">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- #top_nav -->
+        </div>
+
+
+
+
+<div class="span10 offset1">
+    <legend>@Model.Name</legend>
+    <div class="row">
+        <div class="span4">
+            @{ var url = "/Images/products/" + Model.Id + ".jpg";}
+            <img height="200" width="400" src="@url" />
+        </div>
+
+        <div class="span4 offset1">
+            <p><b>Product Name </b>: @Model.Name</p>
+            @if (Model.Quantity > 0)
+            {
+                <p><b>Availability:<span color="green">In Stock</span></b></p>
+            }
+            else
+            {
+                <p><b>Availability:<span color="green">In Stock</span></b></p>
+            }
+            <p><b>Brand </b>: @ViewBag.Company</p>
+
+            <p><b>Price </b>: @Model.Price</p>
+            <p><b>Description </b>: @Model.Description</p>
+            <p><b>Category </b>: @Model.Category</p>
+            <br />
+            @if (Model.Quantity > 0)
+            {
+    
+                <button class="btn btn-primary btn-large" onclick="@("window.location.href='" + @Url.Action("AddCart", "Cart", new { id = Model.Id }) + "'");">Add to Cart</button>
+            }
+            else
+            {
+                <button class="btn btn-primary btn-large disabled" onclick="@("window.location.href='" + @Url.Action("AddCart", "Cart", new { id = Model.Id }) + "'");" disabled="disabled">Add to Cart</button>
+     }
+
+        </div>
+    </div>
+    <br />
+    <br />
+</div>
+

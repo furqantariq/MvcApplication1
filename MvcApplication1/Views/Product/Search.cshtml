@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Search";
+}
+
+    <div id="topNavWrap">
+            <!-- ==================== TOP NAVIGATION ==================== -->
+            <div id="topNav" class="clear">
+                <div id="display_menu_1" class="menu">
+                    <script type="text/javascript">var breadCrumb = "||";</script>
+                    <script type="text/javascript">
+                        function mOvr1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav nav_hover'; }
+                        function mOut1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav'; }
+ </script>
+                    <ul>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);"">
+                           @Html.ActionLink("Home","Index","Home")
+
+                        </li>
+                             <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                          @Html.ActionLink("All Products","ViewAll","Product")
+
+                        </li>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                            <a href="Cart" title="">Shopping Cart</a>
+                        </li>
+                    <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);" onclick="mClk1(this);">
+                            <a href="#" title="">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- #top_nav -->
+        </div>
+
+
+
+<script>
+    $("document").ready(function(){
+       $.getJSON("/Product/SearchJson?Search=@ViewBag.term",function(data)
+       {
+             if(data==null)
+            {
+                $("#result").append("<h5>Results not found</h5>");
+            }
+            else {
+                $.each(data,function(i,item){
+                    $("#result").append("<div class='row'><div class='span3 offset1'><img src='/Images/products/"+item.Id+".jpg'></div><div class=span5>Name  : "+item.Name+"</div></div><br><hr>");
+                })
+                }
+        }
+        )
+    })
+
+
+</script>
+<div class="span10 offset1" id="result">
+    <legend>Search Results</legend><br />
+    
+</div>
+<br /><br />

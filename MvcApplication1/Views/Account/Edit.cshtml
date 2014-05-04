@@ -1,0 +1,151 @@
+﻿@model MvcApplication1.Models.Account
+
+@{
+    ViewBag.Title = "Edit Account";
+}
+
+     <div id="topNavWrap">
+            <!-- ==================== TOP NAVIGATION ==================== -->
+            <div id="topNav" class="clear">
+                <div id="display_menu_1" class="menu">
+                    <script type="text/javascript">var breadCrumb = "||";</script>
+                    <script type="text/javascript">
+                        function mOvr1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav nav_hover'; }
+                        function mOut1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav'; }
+ </script>
+                    <ul>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);"">
+                           @Html.ActionLink("Home","Index","Home")
+
+                        </li>
+                           <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                          @Html.ActionLink("All Products","ViewAll","Product")
+
+                        </li>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                            <a href="/Cart" title="">Shopping Cart</a>
+                        </li>
+                    <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);" onclick="mClk1(this);">
+                            <a href="#" title="">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- #top_nav -->
+        </div>
+
+
+
+<div class="span10 offset1">
+@using (Html.BeginForm())
+{
+       @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+
+    @Html.HiddenFor(model => model.Id);
+    
+    @Html.HiddenFor(model => model.Password);
+    
+    @Html.HiddenFor(model => model.Username);
+    <fieldset>
+        <legend>Edit Account</legend>
+        <br />
+        <div class="row">
+            <div class="span2 ">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+            <div class="span">
+                @Html.EditorFor(model => model.Name)
+            </div>
+            <div class="span offset1">
+            @Html.ValidationMessageFor(model => model.Name)
+                </div>
+        </div>
+   
+
+        <div class="row">
+            <div class="span2 ">
+                @Html.DisplayNameFor(model => model.Email)
+            </div>
+            <div class="span">
+                @Html.EditorFor(model => model.Email)
+            </div>
+             <div class="span offset1">
+            @Html.ValidationMessageFor(model => model.Email)
+                </div>
+       </div>
+
+        <div class="row">
+            <div class="span2 ">
+                @Html.DisplayNameFor(model => model.Country)
+            </div>
+            <div class="span">
+                @Html.EditorFor(model => model.Country)
+            </div>
+              <div class="span offset1">
+            @Html.ValidationMessageFor(model => model.Country)
+                </div>
+      </div>
+
+        <div class="row">
+            <div class="span2 ">
+                @Html.DisplayNameFor(model => model.City)
+            </div>
+            <div class="span">
+                @Html.EditorFor(model => model.City)
+            </div>
+              <div class="span offset1">
+            @Html.ValidationMessageFor(model => model.City)
+                </div>
+      </div>
+
+        <div class="row">
+            <div class="span2 ">
+                @Html.DisplayNameFor(model => model.DOB)
+            </div>
+            <div class="span">
+                @Html.EditorFor(model => model.DOB)
+            </div>
+              <div class="span offset1">
+            @Html.ValidationMessageFor(model => model.DOB)
+                </div>
+     </div>
+        <div class="row">
+            <div class="span2 ">
+                @Html.DisplayNameFor(model => model.Address)
+            </div>
+            <div class="span">
+                @Html.EditorFor(model => model.Address)
+            </div>
+               <div class="span offset1">
+            @Html.ValidationMessageFor(model => model.Address)
+                </div>
+     </div>
+
+        <div class="row">
+            <div class="span2 ">
+                @Html.DisplayNameFor(model => model.Phone)
+            </div>
+            <div class="span">
+                @Html.EditorFor(model => model.Phone)
+            </div>
+              <div class="span offset1">
+            @Html.ValidationMessageFor(model => model.Phone)
+                </div>
+      </div>
+        <br />
+         <div class="row">
+            <div class="offset2">
+            <input type="submit" class="btn btn-primary btn-large span3" value="Save">
+            </div>
+        </div>
+      
+    </fieldset>
+}
+
+      <br />
+        <br />
+    </div>
+ @Scripts.Render("~/bundles/jqueryval")

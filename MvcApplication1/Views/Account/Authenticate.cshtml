@@ -1,0 +1,93 @@
+﻿@model MvcApplication1.Models.Account
+
+@{
+    ViewBag.Title = "Login";
+}
+
+   <div id="topNavWrap">
+            <!-- ==================== TOP NAVIGATION ==================== -->
+            <div id="topNav" class="clear">
+                <div id="display_menu_1" class="menu">
+                    <script type="text/javascript">var breadCrumb = "||";</script>
+                    <script type="text/javascript">
+                        function mOvr1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav nav_hover'; }
+                        function mOut1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav'; }
+ </script>
+                    <ul>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);"">
+                           @Html.ActionLink("Home","Index","Home")
+
+                        </li>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                          @Html.ActionLink("All Products","ViewAll","Product")
+
+                        </li>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                            <a href="/Cart" title="">Shopping Cart</a>
+                        </li>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);" onclick="mClk1(this);">
+                            <a href="#" title="">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- #top_nav -->
+        </div>
+
+
+
+<div class="span10 offset1">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Login</legend>
+            <br />
+            <h5 style="color:red">@ViewBag.Error</h5>
+            <div class="row">
+                <div class="span2 ">
+                    @Html.DisplayNameFor(model => model.Username)
+                </div>
+                <div class="span">
+                    @Html.EditorFor(model => model.Username)
+                </div>
+                <div class="span offset1">
+                    @Html.ValidationMessageFor(model => model.Username)
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2 ">
+                    @Html.DisplayNameFor(model => model.Password)
+                </div>
+                <div class="span">
+                    @Html.EditorFor(model => model.Password)
+                </div>
+                <div class="span offset1">
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="offset2">
+                    <input type="submit" class="btn btn-primary btn-large span3" value="Sign In">
+                </div>
+            </div>
+
+        </fieldset>
+}
+
+    <br />
+    <br />
+</div>
+@Scripts.Render("~/bundles/jqueryval")
+
+
+
+
+
+
+

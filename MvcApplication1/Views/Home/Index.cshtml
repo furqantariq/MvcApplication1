@@ -1,0 +1,88 @@
+﻿@model List<MvcApplication1.Models.Product>
+@{
+    ViewBag.Title = "Index";
+}
+
+    <div id="topNavWrap">
+            <!-- ==================== TOP NAVIGATION ==================== -->
+            <div id="topNav" class="clear">
+                <div id="display_menu_1" class="menu">
+                    <script type="text/javascript">var breadCrumb = "||";</script>
+                    <script type="text/javascript">
+                        function mOvr1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav nav_hover'; }
+                        function mOut1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav'; }
+ </script>
+                    <ul>
+                        <li class="nav nav_selected" onmouseover="mOvr1(this);" onmouseout="mOut1(this);"">
+                           @Html.ActionLink("Home","Index","Home")
+
+                        </li>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                          @Html.ActionLink("All Products","ViewAll","Product")
+
+                        </li>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                            <a href="Cart" title="">Shopping Cart</a>
+                        </li>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);" onclick="mClk1(this);">
+                            <a href="#" title="">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- #top_nav -->
+        </div>
+
+
+
+
+<img src="/Images/template/banner.jpg" />
+<br /><br />
+<script>
+    $("document").ready(function(){
+        $.getJSON("Home/getRecent",function(data){
+            if(data!=null){
+                $.each(data, function (i, item) {
+                    if(i<4)
+                        $("#p").append("<div class=span3><a href='Product/ViewProduct/" + item.id + "'><img height=120 width=220 src='/Images/products/" + item.id + ".jpg'></a><h5><center><Br>" + item.name + "<br>Price: $" + item.price + "</center></h5></div>");
+                    else
+                        $("#p1").append("<div class=span3><a href='Product/ViewProduct/" + item.id + "'><img height=120 width=220 src='/Images/products/" + item.id + ".jpg'></a><h5><center><Br>" + item.name + "<br>Price: $" + item.price + "</center></h5></div>");
+
+                })
+            }
+        })
+    }
+)
+
+    $("document").ready(function(){
+        $.getJSON("Home/getBrands",function(data){
+            if(data!=null){
+                $.each(data,function(i,item){
+                    $("#b").append("<div class=span2><img src='/Images/Company/"+item.id+".jpg' alt='"+item.name+"'></div>")
+                }
+                )
+            }
+        }
+        )
+    }
+    )
+</script>
+<br /><br />
+<legend>Recent Products</legend><br />
+<div id="p" class="row">
+
+</div>
+<br />
+<div id="p1" class="row">
+
+</div>
+
+<br /><br />
+<legend>Our Brands</legend><br />
+<div id="b" class="row">
+
+
+</div>
+<br /><br />

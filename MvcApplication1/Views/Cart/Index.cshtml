@@ -1,0 +1,68 @@
+﻿@model List<MvcApplication1.Models.Product>
+
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+
+
+
+    <div id="topNavWrap">
+            <!-- ==================== TOP NAVIGATION ==================== -->
+            <div id="topNav" class="clear">
+                <div id="display_menu_1" class="menu">
+                    <script type="text/javascript">var breadCrumb = "||";</script>
+                    <script type="text/javascript">
+                        function mOvr1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav nav_hover'; }
+                        function mOut1(src)
+                        { if (src.className != 'nav nav_hover nav_selected') src.className = 'nav'; }
+ </script>
+                    <ul>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);"">
+                           @Html.ActionLink("Home","Index","Home")
+
+                        </li>
+                         <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                          @Html.ActionLink("All Products","ViewAll","Product")
+
+                        </li>
+                        <li class="nav nav_selected" onmouseover="mOvr1(this);" onmouseout="mOut1(this);">
+                            <a href="/Cart" title="">Shopping Cart</a>
+                        </li>
+                        <li class="nav" onmouseover="mOvr1(this);" onmouseout="mOut1(this);" onclick="mClk1(this);">
+                            <a href="#" title="">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- #top_nav -->
+        </div>
+<div class="span10 offset1" id="p">
+    <legend>All products</legend>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Price</th>
+               <th>Product Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Name</td>
+                    <td>@p.Price</td>
+                    <td>@p.Category</td>
+                </tr>
+        
+    }
+        </tbody>
+    </table>
+<br />
+    <div class="row">
+        <div class="offset1">
+    <button class=" btn btn-primary btn-large">Checkout</button> <button class=" btn btn-large" onclick="@("window.location.href='" + @Url.Action("Clear", "Cart") + "'");">Clear Cart</button>  <br /><br />  </div></div>
+</div>
+
